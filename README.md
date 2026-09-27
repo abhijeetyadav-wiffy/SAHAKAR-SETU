@@ -2,106 +2,152 @@
 ### AI & LMS - Enabled Cooperative Capacity Building, ERP & Employment Ecosystem
 
 **Smart India Hackathon (SIH) 2026** | **Problem Statement ID:** 26087  
-**Target Ministry:** Ministry of Cooperation, Government of India  
-**Target Organization:** National Council for Cooperative Training (NCCT)  
+**Ministry:** Ministry of Cooperation, Government of India  
+**Department / Apex Organization:** National Council for Cooperative Training (NCCT)  
 **Theme:** Smart Education | **Category:** Hardware | **Proposed Mode:** Software + Hardware  
 
 ---
 
-## 📖 Executive Overview
+## 📌 Executive Summary
 
-**SAHAKAR-SETU (सहकार-सेतु)** is a unified, production-grade digital and edge-hardware ecosystem designed to empower India's cooperative sector. It directly connects the ongoing **₹2,925.39 Cr project computerizing 79,630 Primary Agricultural Credit Societies (PACS)** with NCCT's 20 apex training institutes (VAMNICOM Pune, 5 RICMs, 14 ICMs).
+India is currently investing **₹2,925.39 Crores** to computerize and modernize **79,630 Primary Agricultural Credit Societies (PACS)** onto a unified national ERP. However, the human capital engine driving this transformation remains constrained by paper-based registrations, proxy attendance, low-bandwidth rural connectivity barriers, and unverified paper certifications.
 
-By combining **offline-first edge biometric attendance**, an **audio-first low-bandwidth LMS**, **tamper-proof W3C cryptographic credentials**, and a **closed-loop cooperative employment exchange**, Sahakar-Setu eliminates ghost attendance, cuts training fund leakages, and bridges certified rural talent directly into PACS operations.
-
----
-
-## 🧭 Repository Documentation Index
-
-| Document | Description | Direct Link |
-| :--- | :--- | :--- |
-| **`ARCHITECTURE.md`** | Complete 25-Section CTO-Level Architectural Blueprint (Data models, security, threat analysis, scalability roadmap). | [ARCHITECTURE.md](./ARCHITECTURE.md) |
-| **`TECHNICAL_SYSTEM_ARCHITECTURE.md`** | 6-Layer Technical System Architecture, 45-Component Census, and Data Flow Payload Dictionary. | [TECHNICAL_SYSTEM_ARCHITECTURE.md](./TECHNICAL_SYSTEM_ARCHITECTURE.md) |
-| **`PROPOSED_SOLUTION.md`** | Requirement-by-Requirement "What They Asked vs. How We Solve It" specification + Master Architecture Matrix. | [PROPOSED_SOLUTION.md](./PROPOSED_SOLUTION.md) |
-| **`PPT_CONTENT.md`** | Slide-by-slide copy-paste ready content, notes, and speaker scripts for the official 6-slide SIH evaluation deck. | [PPT_CONTENT.md](./PPT_CONTENT.md) |
-| **`SIH_EVALUATION_DECK_6_SLIDES.md`** | Official 6-slide presentation deck adhering strictly to SIH evaluation criteria. | [SIH_EVALUATION_DECK_6_SLIDES.md](./SIH_EVALUATION_DECK_6_SLIDES.md) |
-| **`RESEARCH.md`** | Policy research dossier: Ministry of Cooperation, NCCT, VAMNICOM, DPI integrations (Bhashini, DigiLocker, NCD, NCS), and academic citations. | [RESEARCH.md](./RESEARCH.md) |
-| **`discussion.md`** | Living decision ledger tracking all architectural decisions (Discussions 1 to 14) and action items. | [discussion.md](./discussion.md) |
-| **`agent.md`** | CTO MVP System Architecture Agent definition & operational principles. | [agent.md](./agent.md) |
-
----
-
-## 🏛️ Master Technical Architecture
-
-![Master Technical System Architecture](./master_arch_cream_ppt.jpg)
-
-### Architecture Layer Overview
-1. **Layer 1 (Client & Edge Interfaces):** Mobile PWA (<1.2MB), Vernacular Voice AI, Responsive Web Portals, Public Zero-Login Credential Verifier, and 8-inch Rugged Tablet Attendance Kiosks.
-2. **Layer 2 (Security & API Gateway):** Nginx / Cloudflare Edge, TLS 1.3, WAF, Token Bucket Rate Limiting, and Multi-Institute RBAC Token Validator.
-3. **Layer 3 (Core Application Monolith - FastAPI):** ERP & Camunda BPMN Workflow Engine, Biometric Stipend Engine with Anomaly Detection, Audio Micro-LMS, 22-Module PACS ERP Sandbox, Cryptographic Credential Engine, and Deterministic Job Ranker.
-4. **Layer 4 (Persistence & Cache):** Multi-Tenant PostgreSQL 16 (Row-Level Security), Redis 7 (Celery background queues), and Cloudflare R2 / AWS S3 (Presigned audio and signed PDF certificates).
-5. **Layer 5 (National DPI & AI Services):** Bhashini & AI4Bharat (IndicWhisper, IndicTrans2, MMS-TTS), DigiLocker / NAD API, National Career Service (NCS), National Cooperative Database (NCD), and NIC SMS Gateway.
-
----
-
-## 🔄 End-to-End Operational User Flow
+**SAHAKAR-SETU** is a unified, production-grade digital and hardware ecosystem bridging NCCT's 20 apex training institutions (VAMNICOM Pune, 5 RICMs, 14 ICMs) with 79,630 computerized PACS and rural learners.
 
 ```
-   [1. ONBOARDING & REGISTRATION] ──► [2. INSTITUTE TRAINING ERP] ──► [3. SMART ATTENDANCE (HARDWARE)]
-     • Rural Youth Voice AI             • Multi-Tier Approvals           • 8" Doorway Tablet Kiosk
-     • Mobile PWA Self-Registration     • Timetable Scheduling           • <80ms INT8 Face Recognition
-     • PACS Bulk Nomination CSV         • Dynamic Hostel Bed Grid        • Offline SQLite (50k events)
-                                                                         • Biometric-Locked TA/DA
-                                                                                    │
-                                                                                    ▼
-   [6. COOPERATIVE EMPLOYMENT]   ◄── [5. TAMPER-PROOF CREDENTIALS] ◄── [4. MULTILINGUAL LMS & SANDBOX]
-     • 79,630 PACS Job Postings         • Auto-Generated Certificate     • Audio-First Lessons (<2MB)
-     • 1-Click Verified Apply           • Asymmetric Ed25519 QR          • 22-Module PACS ERP Sandbox
-     • Deterministic Job Ranker         • Offline Verification (<15ms)   • Offline Randomized Quizzes
-     • Candidate Hired by PACS          • Push to DigiLocker / NAD       • 22 Indic Languages (Voice)
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                    SAHAKAR-SETU ECOSYSTEM                                        │
+├───────────────────┬───────────────────┬──────────────────────┬───────────────────────────────────┤
+│ 1. TRAINING ERP   │ 2. EDGE HARDWARE  │ 3. VERNACULAR LMS    │ 4. EMPLOYMENT EXCHANGE            │
+│ 20 NCCT Institutes│ 8" Android Kiosk  │ Audio-First (<2MB)   │ Direct 79,630 PACS Recruiter Desk │
+│ Batch & Hostel Grid│ Local Face Match  │ 22 PACS ERP Sandbox  │ W3C Ed25519 Cryptographic QR      │
+│ Verified TA/DA    │ <80ms / Anti-Spoof│ 22 Indic Languages   │ Automated DigiLocker / NAD Push   │
+└───────────────────┴───────────────────┴──────────────────────┴───────────────────────────────────┘
 ```
 
 ---
 
-## 💎 Breakthrough Technical Innovations
+## 🏛️ Master Technical System Architecture
 
-| Innovation | Operational Problem Solved | Technical Breakthrough | Impact |
+![Master Architecture Diagram](master_architecture_cream.png)
+
+### 5-Layer Architectural Topology
+1. **Layer 1 (Client & Edge Interfaces):** Offline-first Next.js 14 Trainee PWA (<1.2MB payload), Web Audio MediaRecorder Voice Assistant, React Admin Portals with FullCalendar, and an autonomous 8-inch Android edge attendance kiosk.
+2. **Layer 2 (Gateway & Security Layer):** Nginx / Cloudflare reverse proxy enforcing TLS 1.3 strict ciphers, WAF rate limiting, and JWT Role-Based Access Control (RBAC) isolating 20 institutes.
+3. **Layer 3 (Core Modular Monolith Backend):** High-performance asynchronous FastAPI core hosting Camunda BPMN approval workflows, automated TA/DA stipend calculator with anomaly fraud gates, audio micro-lesson bundlers, 22-module PACS ERP sandbox engine, asymmetric Ed25519 certificate signers, and an explainable deterministic job ranker.
+4. **Layer 4 (Persistence & Data Storage):** Multi-tenant PostgreSQL 16 with Row-Level Security (RLS) and `pg_trgm` fuzzy matching, Redis 7 in-memory task broker & Celery worker queues, and Cloudflare R2 / AWS S3 encrypted object storage.
+5. **Layer 5 (National DPI & External Integrations):** AI4Bharat / Bhashini (IndicWhisper ASR, IndicTrans2, Meta MMS-TTS in 22 Scheduled languages), DigiLocker / National Academic Depository (NAD), National Career Service (NCS), National Cooperative Database (NCD), and NIC Gov SMS / WhatsApp DLT gateway.
+
+---
+
+## 🔄 End-to-End User Flow & Operational Journey
+
+![User Flow with Roles](userflow_with_users.jpg)
+
+### Operational Lifecycle Stages:
+1. **Stage 1 (Discovery & Nomination):** Rural youth discover courses via voice queries in 22 regional languages; PACS Secretaries submit bulk candidate rosters.
+2. **Stage 2 (Institute ERP & Campus Logistics):** Automated approval routing via Camunda BPMN; conflict-free timetable scheduling; real-time hostel room and bed allocation grid.
+3. **Stage 3 (Smart Attendance Kiosk):** Trainee scans face at classroom doorway; INT8 MobileFaceNet ONNX executes biometric match in `<80ms` with MiniFASNet anti-spoofing; local SQLite buffers 50,000 check-ins offline; TA/DA stipend calculated automatically.
+4. **Stage 4 (Multilingual Micro-LMS):** Trainees listen to audio lessons (`<2MB/module`) cached in browser `IndexedDB` and practice real daybook entries inside an in-browser 22-module PACS ERP simulator.
+5. **Stage 5 (Verifiable Certification):** Instant certificate generation with asymmetric Ed25519 signatures encoded in 2D QR codes; verified offline in `<15ms` ($0 gas fees); pushed directly to citizen DigiLocker vaults.
+6. **Stage 6 (Cooperative Employment Exchange):** 79,630 PACS post vacancies; candidates apply in 1-click attaching cryptographically verified transcripts; ranked via an auditable, deterministic formula.
+7. **Stage 7 (National Governance):** Live executive dashboard for Ministry of Cooperation and NCCT HQ tracking training KPIs, state diversity, placement ROI, and fraud fund savings.
+
+---
+
+## 📊 Modules Grouped by Deployment Platform
+
+![Modules Grouped by Technology](modules_grouped_by_tech.jpg)
+
+| Deployment Platform | Key Modules & Components | Primary Users & Roles | Technology Stack |
 | :--- | :--- | :--- | :--- |
-| **1. Edge Face Recognition Kiosk** | Optical thumb scanners fail on farmers (28% FTE rate); cloud video crashes on 2G. | **INT8 MobileFaceNet ONNX (<80ms)** + MiniFASNet silent liveness on local ARM CPU. | **0% Failure-to-Enroll**, 100% DPDP Act 2023 compliant (raw photos purged from RAM). |
-| **2. Cryptographic Stipend Engine** | Ghost attendance & duplicate TA/DA claims across 20 institutes. | **Automated TA/DA calculator** mathematically bound to door scans with duplicate bank account/date fraud detection. | **₹1.2–₹2.5 Cr/year** fraud fund savings. |
-| **3. Audio-First Micro-LMS & Sandbox** | Heavy video LMS fails on rural 2G/3G networks; no hands-on practice. | **Audio micro-lessons (<2MB)** in IndexedDB + in-browser **22-Module PACS Accounting Software Sandbox**. | **100% offline learning** on ₹6,000 budget smartphones. |
-| **4. Zero-Gas W3C Credentials** | Paper certificates are forged; Blockchain incurs costly gas fees ($2–$15/cert). | **Asymmetric Ed25519 Signatures** in 2D QR codes verified in <15ms offline + **DigiLocker push**. | **$0 gas fees**, instant offline verification anywhere in India. |
-| **5. Closed-Loop PACS Job Exchange** | "Train-and-forget" disconnect; 79,630 computerized PACS lack operators. | Direct cooperative recruiter portal + **Explainable Deterministic Ranker** (Grade + Proximity + Recency). | **1-click verified hiring** with transparent audit compliance. |
-| **6. Guardrailed Voice AI Counseling** | Low digital literacy; generic LLMs hallucinate government scheme rules. | **AI4Bharat IndicWhisper Voice AI** in 22 languages + strict RAG with an explicit **out-of-domain refusal gate**. | Zero misinformation, full rural language inclusion. |
+| **📱 Mobile PWA & App** | • Trainee Portal<br>• Audio Micro-LMS<br>• PACS ERP Simulator<br>• Voice AI Assistant<br>• Dynamic QR Token | Rural Youth, Women SHGs, Farmers, Trainees | Next.js 14 PWA, IndexedDB, Tailwind CSS |
+| **💻 Responsive Web Portals** | • Institution ERP<br>• Timetable Scheduler<br>• Hostel Bed Grid<br>• Recruiter Job Exchange<br>• Public Credential Verifier<br>• National Executive Cockpit | Institute Coordinators, Wardens, Faculty, PACS Recruiters, Ministry | React / Next.js, TanStack Table, FullCalendar, Camunda BPMN |
+| **📟 Physical Hardware & Edge** | • Wall-Mounted Rugged Kiosk<br>• Edge Face Recognition<br>• Anti-Spoof Liveness<br>• Offline Event Spooler | Trainees (Face Scan at Door), Campus Gatekeepers | Android Tablet / RK3566, ONNX Runtime Mobile, OpenCV, SQLite |
+| **⚙️ Cloud Backend & Database** | • Core API Gateway<br>• Multi-Tenant Database<br>• Cryptographic Credential Signer<br>• Verified Stipend Rule Engine | System Services, Database Administrators, Audit Officers | Python FastAPI, PostgreSQL 16 (RLS), Redis, Ed25519 (PyNaCl) |
+| **🌐 AI & DPI Integrations** | • Multilingual Voice Gateway<br>• DigiLocker & NAD Sync<br>• National Cooperative Database<br>• National Career Service Exchange | Pan-India Citizens, Ministry Leadership, Verifiers | AI4Bharat, Bhashini API, DigiLocker API, NCS API |
 
 ---
 
-## 🎨 Visual Assets & Diagram Gallery
+## 🗂️ Complete 45-Component Census
 
-All presentation-ready diagrams are stored in the root directory:
-* **`master_arch_cream_ppt.jpg`** — 16:9 Master Technical Architecture Blueprint (Formal Cream Theme).
-* **`technical_system_architecture.jpg`** — 16:9 Master Technical System Architecture (Dark Tech Theme).
-* **`master_architecture_cream.svg`** — Scalable Vector Graphics (SVG) export of the complete technical architecture.
-* **`master_architecture_cream.pdf`** — Printable vector PDF architecture document.
-* **`userflow_with_users.jpg`** — Wide 3:4 vertical end-to-end user journey with primary user identity cards.
-* **`modules_grouped_by_tech.jpg`** — 16:9 unnumbered matrix table of all modules grouped by technology platform.
-* **`master_architecture_viewer.html`** — Interactive web viewer for zooming and inspecting the vector architecture.
+| Subsystem Group | Component Count | Summary of Key Deliverables |
+| :--- | :--- | :--- |
+| **1. Institution ERP Platform** | 10 Components | Self-registration, bulk nominations, Camunda approval workflow, trainee/institute/faculty profiles, timetable scheduler, hostel bed matrix, mess tracking, verified TA/DA stipend calculator. |
+| **2. Smart Digital Attendance** | 5 Components | Kiosk client app, INT8 MobileFaceNet edge recognition (<80ms), MiniFASNet anti-spoofing, dynamic TOTP QR fallback, 50k offline SQLite buffer. |
+| **3. Interactive Multilingual LMS** | 4 Components | Micro-learning delivery (22 languages), multimedia learning hub, in-browser 22-module PACS ERP simulator, assessment and quiz engine. |
+| **4. Skill Certification & Verification** | 4 Components | Auto certificate generator, asymmetric Ed25519 2D QR signer, zero-login public verification portal, centralized transcript repository. |
+| **5. Cooperative Employment Exchange** | 5 Components | Recruiter portal, vacancy posting interface, talent directory search, 1-click verified application workflow, explainable deterministic ranker. |
+| **6. AI Career Counseling Chatbot** | 3 Components | Vernacular voice/text interface (22 languages), cooperative rules guidance engine, automated course recommendation algorithm. |
+| **7. Mobile-Friendly Trainee Client** | 2 Components | Next.js 14 Progressive Web App (<1.2MB payload), Serwist/Workbox offline content caching manager. |
+| **8. Centralized Database & Analytics** | 3 Components | Multi-tenant PostgreSQL 16 with Row-Level Security, Ministry & NCCT HQ macro analytics cockpit, automated SMS/WhatsApp outreach engine. |
+| **9. Physical Hardware Specifications** | 4 Components | 8-inch rugged tablet/SBC, wide-angle HD optical camera sensor, tamper-resistant wall mount with keylock, internal 5000mAh battery backup. |
+| **10. National DPI & Ecosystem Gateways** | 5 Gateways | API Gateway/WAF, DigiLocker/NAD API, National Career Service (NCS) API, National Cooperative Database (NCD) API, NIC SMS/WhatsApp Gateway. |
+| **TOTAL ARCHITECTURAL ELEMENTS** | **45 Elements** | **100% Comprehensive Coverage of PS ID 26087** |
 
 ---
 
-## 🛠️ Specialized Agents & Skills Included
+## 💡 Key Architectural Innovations
 
-The `.agents/skills/` directory contains specialized skill runbooks for AI pair programming:
-* **`arkitect` / `arkitect-drawio` / `arkitect-excalidraw`:** Editable Draw.io and Excalidraw architecture diagram generation.
-* **`sih-presentation-strategist`:** Specialized strategist for Smart India Hackathon winning presentations.
-* **`technical-content-writer`:** High-density technical writing and solution architecture communication.
-* **`senior-ml-agent` / `eda-auditor` / `dl-training-agent`:** Edge AI inference and machine learning verification workflows.
-* **`frontend-design` / `responsive-web-design` / `taste-skill`:** Ultra-clean GovTech user interface engineering.
-* **`ponytail`:** Minimalist, zero-bloat, production-first engineering guidelines.
+1. **Edge Biometrics vs. Broken Fingerprints:** Up to 28% of agricultural workers experience failure-to-enroll on optical thumb scanners due to worn friction ridges. Our 8-inch tablet kiosk runs INT8 MobileFaceNet locally in `<80ms` with MiniFASNet liveness detection. Complies 100% with India's **DPDP Act 2023** (raw camera frames are purged from RAM; only 128-d vectors are stored).
+2. **Stipend Leakage Prevention:** Travel & Daily Allowances (TA/DA) are cryptographically bound to biometric door-scan timestamps, supported by automated duplicate claim & anomaly detection saving an estimated **₹1.2–₹2.5 Cr annually**.
+3. **Audio-First LMS over Video:** Replaces 500MB video streams with `<2MB` audio micro-lessons in 22 Scheduled Indian languages, paired with an offline in-browser sandbox replicating 22 live PACS ERP software modules.
+4. **W3C Cryptographic Credentials over Blockchain:** Employs asymmetric Ed25519 private-key signatures embedded in 2D QR codes verified in `<15ms offline` with **$0 gas fees**, pushed directly to citizen DigiLocker accounts.
+5. **Auditable Deterministic Job Ranker:** Replaces unexplainable black-box AI with a transparent public-sector hiring formula:
+   $$\text{Rank Score} = w_1(\text{Exam Grade}) + w_2(\text{Proximity}) + w_3(\text{Recency})$$
+6. **Voice AI with Strict Refusal Gate:** Voice-in/voice-out assistant (AI4Bharat IndicWhisper) with a strict RAG retrieval boundary that refuses out-of-scope questions, preventing misinformation.
+
+---
+
+## 📁 Repository Structure & Documentation Index
+
+```
+├── .agents/skills/                   # AI Coding & Architecture Skills
+│   ├── arkitect/                     # Architecture diagramming skill (Draw.io / Excalidraw)
+│   ├── sih-presentation-strategist/  # Smart India Hackathon slide deck guidelines
+│   ├── technical-content-writer/     # Engineering documentation standards
+│   ├── senior-ml-agent/              # Edge ML & model deployment specs
+│   └── ponytail/                     # Minimalist architecture & YAGNI optimization
+│
+├── ARCHITECTURE.md                   # Complete 25-section CTO Master Architecture Document
+├── RESEARCH.md                       # Government policy research, DPI links & citations
+├── PROPOSED_SOLUTION.md              # Requirement-by-requirement technical solution mapping
+├── TECHNICAL_SYSTEM_ARCHITECTURE.md  # 45-component technical census & explicit data flow specs
+├── PPT_CONTENT.md                    # Slide-by-slide copy-paste ready presentation deck
+├── SIH_EVALUATION_DECK_6_SLIDES.md   # Official 6-Slide presentation deck template
+├── discussion.md                     # Living architectural decision ledger & discussions
+│
+├── generate_diagram.py               # Python generator script for vector architecture diagrams
+├── master_architecture_cream.svg     # Scalable vector architecture diagram (Cream palette)
+├── master_architecture_cream.png     # High-resolution raster diagram
+├── master_architecture_cream.pdf     # Vector printable architecture document
+├── master_architecture_viewer.html   # Interactive web viewer for system architecture
+│
+├── system_user_flow.jpg              # Horizontal 16:9 end-to-end userflow visual
+├── vertical_user_flow.jpg            # Vertical 9:16 operational flowchart
+├── userflow_with_users.jpg           # Two-column operational flow with primary user badges
+├── modules_grouped_by_tech.jpg       # Technology deployment platform matrix
+└── technical_system_architecture.jpg # 5-Layer technical blueprint image
+```
+
+---
+
+## 🚀 Running the Architecture Generator Locally
+
+### Prerequisites
+```bash
+python --version   # Python 3.10+
+pip install reportlab svglib pypdfium2 pillow
+```
+
+### Generate Vector Diagrams
+```bash
+python generate_diagram.py
+```
+This outputs `master_architecture_cream.svg`, which can be viewed directly in any browser or converted into high-resolution PNG/PDF assets.
 
 ---
 
 ## 📜 License & Acknowledgements
-
-Developed for the **Smart India Hackathon 2026** under the guidance of the **Ministry of Cooperation, Government of India** and the **National Council for Cooperative Training (NCCT)**.
-Distributed under the **MIT License**.
+Developed for the **Ministry of Cooperation, Government of India** and the **National Council for Cooperative Training (NCCT)** under the **Smart India Hackathon (SIH) 2026**.  
+Licensed under the **MIT License**.

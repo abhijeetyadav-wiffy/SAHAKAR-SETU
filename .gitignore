@@ -1,28 +1,18 @@
-# Python
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
-.Python
+
+# Virtual environments
+.env
+.venv
 env/
 venv/
 ENV/
-.venv/
 
-# Node
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# System & IDE
+# OS specific files
 .DS_Store
 Thumbs.db
-*.tmp
-.idea/
-.vscode/
 
-# Build outputs & caches
-dist/
-build/
-*.egg-info/
+# Log files
+*.log
